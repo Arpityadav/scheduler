@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SchedulesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,5 +28,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/events/create', [\App\Http\Controllers\EventController::class, 'create'])
+    ->middleware(['auth', 'verified'])->name('event.create');
+
+Route::post('/events/', [\App\Http\Controllers\EventController::class, 'store'])
+    ->middleware(['auth', 'verified'])->name('event.store');
 
 require __DIR__.'/auth.php';
