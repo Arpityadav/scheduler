@@ -35,4 +35,11 @@ Route::get('/events/create', [\App\Http\Controllers\EventController::class, 'cre
 Route::post('/events/', [\App\Http\Controllers\EventController::class, 'store'])
     ->middleware(['auth', 'verified'])->name('event.store');
 
+
+Route::get('/schedules/', [SchedulesController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('schedules.index');
+
+Route::get('/schedules/{schedule}', [SchedulesController::class, 'show'])
+    ->middleware(['auth', 'verified'])->name('schedules.show');
+
 require __DIR__.'/auth.php';
